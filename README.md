@@ -1,5 +1,5 @@
 
-**<mark>Team members:</mark> Andrei Marinescu, Kofi Osel, Hawad Awad**
+**<mark>Team members:</mark> Andrei Marinescu, Kofi Osel, Hawad Ahmad**
 
 <center> <h1>Our Proposal</h1> </center>
 
