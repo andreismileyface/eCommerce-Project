@@ -8,7 +8,8 @@
 
 We will build a travel website that will allow users to book tour for a travel, provide important information to customer who wish to travel to a specific place and provide travel reviews.
 
-  <br />
+  
+<br />
 
 #### Our project will support the following stories:
 
@@ -29,7 +30,9 @@ We will build a travel website that will allow users to book tour for a travel, 
 7.  When contacted in the contact page, we can view and respond to the user based on the email they put in (*2 features*).
     
 8.  Since this is not a real web application, we will add credit card information, change their value and delete them (*3 features*).
-    <br />
+   
+<br />
+
 
 **User section:**
 
@@ -73,7 +76,8 @@ We will build a travel website that will allow users to book tour for a travel, 
 -   Contact page
     
 -   Shopping cart page
-    <br />
+    
+<br />
 
   **Estimated time for this project:**
 
