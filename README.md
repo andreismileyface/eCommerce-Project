@@ -38,7 +38,7 @@ We will build a travel website that will allow users to book tour for a travel, 
 
 1.  User can see the country on Google map (*2 features*)
     
-2.  User can see Reviews and rating (*2 features*)
+2.  User can see Reviews and rating, and filter them (*3 features*)
     
 3.  User can access the contact page and send a request (*1 features*)
     
