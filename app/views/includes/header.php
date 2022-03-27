@@ -17,8 +17,9 @@
     </div>
 
     <div class="navigation-top">
-        <a href="Contact" class="nav-links">Contact</a>
-        <a href="Cruise" class="nav-links">Cruises</a>
-        <a href="Flight" class="nav-links">Flights</a>
-        <a href="Home" style="float:left">Travel Tsunami</a>
+        <a href="Author/signin" class="nav-links">Sign In</a>
+        <a href="Home" style="float:left; font-weight: bold;">Travel Tsunami</a>
+        <a href="Contact" class="nav-links" style="float:left">Contact</a>
+        <a href="Cruise" class="nav-links" style="float:left">Cruises</a>
+        <a href="Flight" class="nav-links" style="float:left">Flights</a>
     </div>
