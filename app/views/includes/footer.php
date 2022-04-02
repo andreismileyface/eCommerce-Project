@@ -26,16 +26,13 @@
                 <br>
                 <br>
                 <span>
-                    <a href="/flight" target="_self">Plane</a>
+                    <a href="Flight" target="_self">Plane</a>
                 </span>
                 <br>
                 <span>
-                    <a href="Cruises.html" target="_self">Cruise</a>
+                    <a href="Cruise" target="_self">Cruise</a>
                 </span>
                 <br>
-                <span>
-                    <a href="Restaurants.html" target="_self">Restaurants</a>
-                </span>
 
             </nav>
 
@@ -48,7 +45,7 @@
                 <br>
                 <br>
                 <span>
-                    <a href="Contact.html" target="_self">Contact</a>
+                    <a href="Contact" target="_self">Contact</a>
                 </span>
 
             </nav>
