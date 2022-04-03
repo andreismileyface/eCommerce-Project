@@ -14,6 +14,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/style.css">
+  <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/Header.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
@@ -31,24 +32,25 @@
     </div>
 
     <div class="navigation-top">
-        <a href="Home" style="float:left; font-weight: bold;">Travel Tsunami</a>
-        <a href="Contact" class="nav-links" style="float:left">Contact</a>
-        <a href="Cruise" class="nav-links" style="float:left">Cruises</a>
-        <a href="Flight" class="nav-links" style="float:left">Flights</a>
+        <a href="/eCommerce-Project/Home" style="float:left; font-weight: bold;">Travel Tsunami</a>
+        <a href="/eCommerce-Project/Contact" class="nav-links" style="float:left">Contact</a>
+        <a href="/eCommerce-Project/Cruise" class="nav-links" style="float:left">Cruises</a>
+        <a href="/eCommerce-Project/Flight" class="nav-links" style="float:left">Flights</a>
 
         <?php 
             if (isLoggedIn()) {
-              echo '<a class="nav-link" href="/eCommerce-Project/Publication/createpost"> Publish </a>';
+              echo '<a class="nav-link" style="float:left" href="/eCommerce-Project/Trip/create"> Publish </a>';
             }
           ?>
 
         <?php
     if (isLoggedIn()) {
-      echo '<a class="nav-link" href="Login/logout"><i class="fa-solid fa-sign-out"></i> Logout  '. $_SESSION['user_first_name'].'</a>';
+      echo '<a class="nav-link" href="/eCommerce-Project/User/logout"><i class="fa-solid fa-sign-out"></i> Logout</a>';
+      echo '<a class="nav-link" href="/eCommerce-Project/User/'.$_SESSION['user_id'].'">Profile</a>';
     } 
     else {
-      echo '<a href="NewUser" style="float:right; font-weight: bold;"> Sign Up</a>
-            <a href="Login" style="float:right; font-weight: bold;"> Login</a>';
+      echo '<a href="/eCommerce-Project/User/signup" style="float:right; font-weight: bold;"> Sign Up</a>
+            <a href="/eCommerce-Project/User/signin" style="float:right; font-weight: bold;"> Login</a>';
     }
     ?>
 

@@ -4,68 +4,89 @@
         <div class="leftcolumn">
             <div class="box">
                 <div class="container">
-                    <form action="#">
+                    <form action="" method="POST">
+                        <h2>Filter Results</h2>
                         <label for="Location">&#9992; Leaving from</label>
-                        <select>
-                            <option value="Quebec">Quebec</option>
-                            <option value="Ontario">Ontario</option>
-                            <option value="Manitoba">Manitoba</option>
-                            <option value="Saskatchewan">Saskatchewan</option>
-                            <option value="Alberta">Alberta</option>
+                        <select class="form-select" aria-label="From select" id="from" name="start">
+                            <option value="Montreal" selected>Montreal</option>
+                            <option value="Toronto">Toronto</option>
+                            <option value="Quebec City">Quebec City</option>
                             <option value="New York">New York</option>
+                            <option value="Florida">Florida</option>
                         </select>
 
                         <label for="Location">&#128205; Going to</label>
-                        <select>
-                            <option value="France">France</option>
-                            <option value="Spain">Spain</option>
-                            <option value="United States">United States</option>
-                            <option value="China">China</option>
-                            <option value="Italy">Italy</option>
-                            <option value="Turkey">Turkey</option>
+                        <select class="form-select" aria-label="From select" id="from" name="destination">
+                            <option value="Montreal">Montreal</option>
+                            <option value="Toronto" selected>Toronto</option>
+                            <option value="Quebec City">Quebec City</option>
+                            <option value="New York">New York</option>
+                            <option value="Florida">Florida</option>
                         </select>
-
+<!-- 
                         <label for="Departing">&#128197; Departing</label>
                         <input type="date" id="Departing" required>
 
                         <label for="Returning">&#128197; Returning</label>
-                        <input type="date" id="Returning" required>
+                        <input type="date" id="Returning" required> -->
 
-                        <label for="Pricing">Budget Pricing</label>
-                        <select>
-                            <option value="1400">CA $1,400</option>
-                            <option value="1800">CA $1,800</option>
-                            <option value="2000">CA $2,000</option>
-                            <option value="2400">CA $2,400</option>
-                            <option value="2800">CA $2,800</option>
-                            <option value="3000+">CA $3,000+</option>
-                        </select>
-
-                        <input type="submit" value="Search">
+                        <input type="submit" value="Search" name="submit">
                     </form>
                 </div>
             </div>
 
-            <div class="box">
+            <div class="box container">
+                <?php 
+                    if (!isset($data['filtered']))
+                        echo '<h2>List of flights</h2>';
+                    else
+                        echo '<h3>List of flights leaving from '.$data['start'].' to '.$data['destination'].'</h3><a href="/eCommerce-Project/Flight">Clear Filter</a>'
+                ?>
+                
+                <?php
+                    $trips = $data['trips'];
+                    if (empty($trips)) {
+                        echo 'no trips found';
+                    } else {
+                        echo '
+                            <table class="table">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th scope="col">Spots Left</th>
+                                        <th scope="col">Leaving From</th>
+                                        <th scope="col">Destination</th>
+                                        <th scope="col">Price</th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                        ';
+                        foreach ($trips as $trip) {
+                            echo 
+                            '
+                                    <tr>
+                                        <th scope="row">'.$trip->max.'</th>
+                                        <td>'.$trip->start.'</td>
+                                        <td>'.$trip->destination.'</td>
+                                        <td>'.$trip->price.'$</td>
+                                        <td><a href="/eCommerce-Project/Trip/viewTrip/'.$trip->trip_id.'">View</a></td>
+                                    </tr>
+                            ';
+                        }
+                        echo
+                        '
+                                </tbody>
+                            </table>
+                        ';
+                    }
+                ?>
+
                 <h2>LOCATION</h2>
                 <h5>Google Map representation of an airport nearby.</h5>
                 <p>
                     <iframe
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5596.688388680401!2d-73.74456960875895!3d45.462869944127576!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cc93d7753d8c92b%3A0x1e30a8791014678d!2sMontr%C3%A9al-Pierre%20Elliott%20Trudeau%20International%20Airport!5e0!3m2!1sen!2sca!4v1638127431218!5m2!1sen!2sca"
                         width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-                </p>
-            </div>
-
-            <div class="box">
-                <h2>STUNNING AIRPORTS</h2>
-                <h5>Land on some most extraordinary airports around the world</h5>
-                <div class="airport-image" style="height:300px;"></div>
-                <p>
-                    Travelers certainly spent less time in the air over the past year, but their love of flying —
-                    starting with a world-class on-the-ground experience — hasn't waned. In fact, many of the top
-                    facilities posted higher scores this year than they did in 2020,
-                    as readers recalled the excellent service, wonderful meals, and seamless connections they've enjoyed
-                    at some of the best international airports around the globe.
                 </p>
             </div>
         </div>

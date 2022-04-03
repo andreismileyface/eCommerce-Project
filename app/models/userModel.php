@@ -1,6 +1,6 @@
 <?php
 
-    class loginModel{
+    class userModel{
         public function __construct(){
             $this->db = new Model;
         }
@@ -8,6 +8,13 @@
         public function getUser($email){
             $this->db->query("SELECT * FROM user WHERE email = :email");
             $this->db->bind(':email',$email);
+            return $this->db->getSingle();
+        }
+
+        public function getUserById($id) {
+            $this->db->query("SELECT * FROM user WHERE id = :id");
+            $this->db->bind(":id", $id);
+
             return $this->db->getSingle();
         }
 

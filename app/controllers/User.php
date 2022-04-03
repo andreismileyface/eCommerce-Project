@@ -1,18 +1,28 @@
 <?php
-class Login extends Controller
-{
+
+class User extends Controller {
     public function __construct()
     {
-        $this->loginModel = $this->model('loginModel');
+        $this->userModel = $this->model('userModel');
     }
 
-    public function index()
-    {
+    public function index($id) {
+        $user = $this->userModel->getUserById($id);
+        if (!isset($user->id)) {
+            echo '<meta http-equiv="Refresh" content="0; url=/eCommerce-Project">';
+        } else {
+            return $this->view('User/index', [
+                "user" => $user
+            ]);
+        }
+    }
+
+    public function signin() {
         if(!isset($_POST['login'])){
-            $this->view('Login/index');
+            $this->view('User/signin');
         }
         else{
-            $user = $this->loginModel->getUser($_POST['Email']);
+            $user = $this->userModel->getUser($_POST['Email']);
             
             if($user != null){
                 $hashed_pass = $user->password_hash;
@@ -29,26 +39,25 @@ class Login extends Controller
                     $data = [
                         'msg' => "Password incorrect! for $user->email",
                     ];
-                    $this->view('Login/index',$data);
+                    $this->view('Login/signin',$data);
                 }
             }
             else{
                 $data = [
-                    'msg' => "User: ". $_POST['Email'] ." does not exists",
+                    'msg' => "Wrong credentials",
                 ];
-                $this->view('Login/index',$data);
+                $this->view('User/signin',$data);
             }
         }
     }
 
-    /*public function newUser()
+    public function signup()
     {
-        if(!isset($_POST['signup'])){
-            $this->view('NewUser');
-        }
-        else{
-            $user = $this->loginModel->getUser($_POST['Email']);
-            if($user == null){
+        if (!isset($_POST['signup'])) {
+            $this->view('User/signup');
+        } else {
+            $user = $this->userModel->getUser($_POST['signup']);
+            if ($user == null) {
                 $data = [
                     'first_name' => trim($_POST['first_name']),
                     'last_name' => trim($_POST['last_name']),
@@ -64,25 +73,24 @@ class Login extends Controller
                     'password_len_error' => '',
                     'msg' => ''
                 ];
-                if($this->validateData($data)){
-                    if($this->loginModel->createUser($data)){
-                        echo 'Please wait creating the account for '.trim($_POST['email']);
-                        echo '<meta http-equiv="Refresh" content="2; url=/eCommerce-Project/Login/">';
-                 }
-                } 
-            }
-            else{
+                if ($this->validateData($data)) {
+                    if ($this->userModel->createUser($data)) {
+                        echo 'Please wait creating the account for ' . trim($_POST['email']);
+                        echo '<meta http-equiv="Refresh" content="2; url=signin">';
+                    }
+                }
+            } else {
                 $data = [
-                    'msg' => "User: ". $_POST['first_name'] ." already exists",
+                    'msg' => "User: " . $_POST['first_name'] . " already exists",
                 ];
-                $this->view('Login/newUser',$data);
+                $this->view('User/index', $data);
             }
-            
         }
     }
 
-    public function validateData($data){
-        if(empty($data['first_name'])){
+    public function validateData($data)
+    {
+        if (empty($data['first_name'])) {
             $data['firstName_error'] = 'First name can not be empty';
         }
         if (!filter_var($data['last_name'])) {
@@ -91,22 +99,21 @@ class Login extends Controller
         if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
             $data['email_error'] = 'Please check your email and try again';
         }
-        if(strlen($data['pass']) < 6){
+        if (strlen($data['pass']) < 6) {
             $data['password_len_error'] = 'Password can not be less than 6 characters';
         }
-        if($data['pass'] != $data['pass_verify']){
+        if ($data['pass'] != $data['pass_verify']) {
             $data['password_match_error'] = 'Password does not match';
         }
 
-        if(empty($data['firstName_error']) && empty($data['password_error']) && empty($data['password_len_error']) && empty($data['password_match_error'])){
+        if (empty($data['firstName_error']) && empty($data['password_error']) && empty($data['password_len_error']) && empty($data['password_match_error'])) {
             return true;
+        } else {
+            $this->view('NewUser/index', $data);
         }
-        else{
-            $this->view('Login/newUser',$data);
-        }
-    }*/
+    }
 
-    public function createSession($user){
+    private function createSession($user){
         echo '<meta http-equiv="Refresh" content="0; url=/eCommerce-Project/">';
         $_SESSION['user_id'] = $user->id;
         $_SESSION['user_email'] = $user->email;
@@ -116,6 +123,8 @@ class Login extends Controller
 
     public function logout(){
         unset($_SESSION['user_id']);
+        unset($_SESSION['user_email']);
+        unset($_SESSION['user_first_name']);
         session_destroy();
         echo '<meta http-equiv="Refresh" content="1; url=/eCommerce-Project/">';
     }
