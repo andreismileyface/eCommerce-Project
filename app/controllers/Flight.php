@@ -32,19 +32,4 @@ class Flight extends Controller {
             return $this->view('Flight/index', $data);
         }
     }
-
-    public function viewFlight($id) {
-        $flight = $this->tripModel->getFlight(["trip_id" => $id]);
-        if (!isset($flight->trip_id)) {
-            echo '<meta http-equiv="Refresh" content="0; url=/eCommerce-Project/">';
-        } else {
-            $seller = $this->userModel->getUserById($flight->user_id);
-
-            return $this->view("Flight/view", [
-                "flight" => $flight,
-                "seller" => $seller
-            ]);
-        }
-        
-    }
 }

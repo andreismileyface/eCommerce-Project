@@ -29,18 +29,4 @@ class Cruise extends Controller {
             ]);
         }
     }
-
-    public function viewCruise($id) {
-        $cruise = $this->tripModel->getCruise($id);
-        if (!isset($cruise->trip_id)) {
-            echo '<meta http-equiv="Refresh" content="0; url=/eCommerce-Project/">';
-        } else {
-            $seller = $this->userModel->getUserById($cruise->user_id);
-
-            return $this->view("Cruise/view", [
-                "cruise" => $cruise,
-                "seller" => $seller
-            ]);
-        }
-    }
 }
