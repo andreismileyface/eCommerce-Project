@@ -1,9 +1,7 @@
 <?php require APPROOT . '/views/includes/header.php'; 
 ?>
 
-<h1>Update Users View</h1>
-    <p>This view is invoked by UserController and the updateUser() is executed</p>
-    
+<h1>Update Trip Information</h1> 
     <form class="px-4 py-3" method="post" action="">
 
     

@@ -5,11 +5,10 @@
 <h2>Personnal Information</h2>
     <table  class="table table-bordered">
         <tr>
-        <td>id</td>
-            
-            <td>destination</td>
-            <td>date</td>
-            <td>price</td>
+            <td>Start</td>
+            <td>Destination</td>
+            <td>Date</td>
+            <td>Price</td>
             <td colspan="3" class="text-center"> Modifications</td>
         </tr>
         <?php
