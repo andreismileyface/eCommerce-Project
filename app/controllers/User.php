@@ -4,9 +4,10 @@ class User extends Controller {
     public function __construct()
     {
         $this->userModel = $this->model('userModel');
+        $this->tripModel = $this->model('tripModel');
     }
 
-    public function index($id) {
+    /*public function index($id) {
         $user = $this->userModel->getUserById($id);
         if (!isset($user->id)) {
             echo '<meta http-equiv="Refresh" content="0; url=/eCommerce-Project">';
@@ -15,7 +16,55 @@ class User extends Controller {
                 "user" => $user
             ]);
         }
+    }*/
+
+    public function index($id) {
+        $trips = $this->tripModel->getTrips($id);
+        $data = [
+            "trips" => $trips
+        ];
+
+        $this->view('User/index',$data);
     }
+
+    public function delete($trip_id, $user_id){
+       
+        if($this->tripModel->deleteTrips($trip_id)){
+            echo 'Please wait we are deleting the user for you!';
+            //header('Location: /eCommerce-Project/User/index');
+            echo '<meta http-equiv="Refresh" content=".4; url=/eCommerce-Project/">';
+            
+           
+        }
+    }
+
+    public function update($trip_id){
+        $user = $this->tripModel->getTrip($trip_id);
+        if(!isset($_POST['update'])){
+            $this->view('User/updateTrip',$user);
+        }
+        else{
+           
+            $data=[
+                'start' => trim($_POST['start']),
+                'destination' => trim($_POST['destination']),
+                'price' => trim($_POST['price']),
+                'max' => trim($_POST['max']),
+                'date' => trim($_POST['date']),
+                'description' => trim($_POST['description']),
+                'name' => trim($_POST['name']),
+                'trip_id' => $trip_id
+            ];
+            if($this->tripModel->editTrip($data)){
+                echo 'Please wait we are updating the user for you!';
+                //header('Location: /eCommerce-Project/User/index');
+                echo '<meta http-equiv="Refresh" content="4; url=/eCommerce-Project">';
+            }
+            
+        }
+    }
+
+
 
     public function signin() {
         if(!isset($_POST['login'])){

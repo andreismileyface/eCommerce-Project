@@ -26,6 +26,25 @@
             return $this->db->getSingle();
         }
 
+        public function getTrips($id) {
+            
+            $this->db->query("SELECT * FROM trip WHERE user_id = '$id'");
+        
+
+            return $this->db->getResultSet();
+        }
+
+        public function deleteTrips($id) {
+            $this->db->query("DELETE FROM trip WHERE trip_id = '$id'");
+            //$this->db->bind('$id', 'user_id');
+
+            return $this->db->execute();
+        }
+
+
+
+
+
         public function getAllCruises() {
             $this->db->query("SELECT * FROM trip WHERE name = 0");
 
