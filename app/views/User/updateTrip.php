@@ -14,10 +14,6 @@
     </div>
    
     <div class="form-group">
-        <label for="destinationinput">Destination</label>
-        <input name="destination" type="text" class="form-control" id="destination" value="<?php echo $data->destination?>">
-    </div>
-    <div class="form-group">
         <label for="dateinput">Date</label>
         <input name="date" type="date" class="form-control" id="date" value="<?php echo $data->date?>">
     </div>
