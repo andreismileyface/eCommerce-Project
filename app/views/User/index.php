@@ -33,5 +33,5 @@
 
     <p class="text-center">Password change click <a href="/eCommerce-Project/User/password/">Here</a></p>
 
-
+</div>
 <?php include APPROOT.'/views/includes/footer.php'; ?>

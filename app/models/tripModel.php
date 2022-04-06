@@ -108,6 +108,15 @@
             return $this->db->execute();
         }
 
+        public function addTrip($id) {
+            $this->db->query("UPDATE trip SET max=:max-1 WHERE trip_id=:trip_id");
+            $this->db->bind(":max", $id['max']);
+            $this->db->bind(":trip_id", $id);
+            //$this->db->query("UPDATE trip SET max = 3 WHERE trip_id = 4");
+
+            return $this->db->execute();
+        }
+
     }
     
 ?>

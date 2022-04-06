@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 26, 2022 at 06:08 PM
+-- Generation Time: Apr 06, 2022 at 01:09 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -24,13 +24,16 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `author`
+-- Table structure for table `contactinfo`
 --
 
-CREATE TABLE `author` (
-  `author_id` int(11) NOT NULL,
-  `username` varchar(255) NOT NULL,
-  `password_hash` varchar(255) NOT NULL
+CREATE TABLE `contactinfo` (
+  `commentId` int(11) NOT NULL,
+  `firstName` varchar(255) NOT NULL,
+  `lastName` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `subject` varchar(255) NOT NULL,
+  `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -38,20 +41,31 @@ CREATE TABLE `author` (
 --
 
 --
--- Indexes for table `author`
+-- Indexes for table `contactinfo`
 --
-ALTER TABLE `author`
-  ADD PRIMARY KEY (`author_id`);
+ALTER TABLE `contactinfo`
+  ADD PRIMARY KEY (`commentId`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `author`
+-- AUTO_INCREMENT for table `contactinfo`
 --
-ALTER TABLE `author`
-  MODIFY `author_id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `contactinfo`
+  MODIFY `commentId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `contactinfo`
+--
+ALTER TABLE `contactinfo`
+  ADD CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

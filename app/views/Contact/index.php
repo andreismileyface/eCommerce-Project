@@ -8,23 +8,45 @@
                 <p>Send us an email and we will answer as soon as possible!</p>
 
                 <div class="container">
-                    <form action="#">
-                        <label for="first-name">First Name*</label>
-                        <input type="text" id="first-name" pattern="[A-Za-z]{2,}" placeholder="E.g. John" required>
+                <?php
+    if (isLoggedIn()) {
 
-                        <label for="last-name">Last Name*</label>
-                        <input type="text" id="last-name" pattern="[A-Za-z]{2,}" placeholder="E.g. Doe" required>
+                echo'<form class="px-4 py-3" method="post" action="">
+                <label for="first-name">First Name*</label>
+                <input type="text" id="firstName" name="firstName" pattern="[A-Za-z]{2,}" placeholder="E.g. John" required>
 
-                        <label for="email">Email Address*</label>
-                        <input type="text" id="email" pattern=".+@gmail\.com" placeholder="E.g. JohnDoe@gmail.com"
-                            required>
+                <label for="last-name">Last Name*</label>
+                <input type="text" id="lastName" name="lastName" pattern="[A-Za-z]{2,}" placeholder="E.g. Doe" required>
 
-                        <label for="subject">Subject</label>
-                        <textarea id="subject" name="subject" placeholder="Example text..."
-                            style="height:200px"></textarea>
+                <label for="email">Email Address*</label>
+                <input type="text" id="email" name="email" pattern=".+@gmail\.com" placeholder="E.g. JohnDoe@gmail.com" required>
 
-                        <input type="submit" value="Submit">
-                    </form>
+                <label for="subject">Subject</label>
+                <textarea id="subject" name="subject" placeholder="Example text..." style="height:200px"></textarea>
+
+                <input type="submit" name="submit" ></input>
+                
+                </form>';
+     
+
+
+
+    }else{
+                echo '<label for="first-name" >First Name*</label>
+                <input type="text" pattern="[A-Za-z]{2,}" placeholder="E.g. John" disabled>
+
+                <label for="last-name">Last Name*</label>
+                <input type="text" pattern="[A-Za-z]{2,}" placeholder="E.g. Doe" disabled>
+
+                <label for="email">Email Address*</label>
+                <input type="text" pattern=".+@gmail\.com" placeholder="E.g. JohnDoe@gmail.com" disabled>
+
+                <label for="subject">Subject</label>
+                <textarea name="subjecttt" placeholder="Example text..." style="height:200px" disabled></textarea>
+
+                <input type="submit" disabled value="Submit">';
+    }
+    ?>
                 </div>
             </div>
         </div>

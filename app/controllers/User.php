@@ -164,6 +164,23 @@ class User extends Controller {
         }
     }
 
+    public function validateEmail($data)
+    {
+        
+        if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
+            $data['email_error'] = 'Please check your email and try again';
+        }
+        if ($data['verify_email'] != $data['email']) {
+            $data['email_match_error'] = 'Email does not match';
+        }
+
+        if (empty($data['email_error']) && empty($data['email_match_error'])) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     private function createSession($user){
         echo '<meta http-equiv="Refresh" content="0; url=/eCommerce-Project/">';
         $_SESSION['user_id'] = $user->id;
@@ -181,28 +198,48 @@ class User extends Controller {
     }
 
     public function password() {
-       $user = $_SESSION['user_id'];
+        $user = $_SESSION['user_id'];
      
-       if(!isset($_POST['submit'])){
-        $this->view('User/password');
-    } else {
-        $data = [
-            'password' => $_POST['password'],
-            'verify_password' => $_POST['verify_password'],
-            "user_id" => $user
-        ];
-        if ($this->validatePass($data) != false) {
-            $data2 =[
-                'password_hash' => password_hash($_POST['password'], PASSWORD_DEFAULT),
-                "id" => $user
+        if(!isset($_POST['submit'])){
+            $this->view('User/password');
+        } else {
+            $data = [
+                'password' => $_POST['password'],
+                'verify_password' => $_POST['verify_password'],
+                "user_id" => $user
             ];
-          
-            if ($this->userModel->updateUser($data2)) {
-                echo 'Please wait creating we are changing the password';
-                echo '<meta http-equiv="Refresh" content="2; url=/eCommerce-Project/">';
+            if ($this->validatePass($data) != false) {
+                $data2 =[
+                    'password_hash' => password_hash($_POST['password'], PASSWORD_DEFAULT),
+                    "id" => $user
+                ];
+            
+                if ($this->userModel->updateUser($data2)) {
+                    echo 'Please wait creating we are changing the password';
+                    echo '<meta http-equiv="Refresh" content="2; url=/eCommerce-Project/">';
+                }
             }
         }
     }
+
+    public function email() {
+        $user = $_SESSION['user_id'];
         
-    }
+        if(!isset($_POST['submit'])){
+            $this->view('User/email');
+        } else {
+            $data = [
+                'email' => $_POST['email'],
+                'verify_email' => $_POST['verify_email'],
+                "user_id" => $user,
+                "id" => $user
+            ];
+            
+            
+            if ($this->userModel->updateEmail($data)) {
+                echo 'Please wait creating we are changing the email';
+                echo '<meta http-equiv="Refresh" content="2; url=/eCommerce-Project/">';
+            }
+        }
+    }  
 }
