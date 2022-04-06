@@ -7,17 +7,6 @@ class User extends Controller {
         $this->tripModel = $this->model('tripModel');
     }
 
-    /*public function index($id) {
-        $user = $this->userModel->getUserById($id);
-        if (!isset($user->id)) {
-            echo '<meta http-equiv="Refresh" content="0; url=/eCommerce-Project">';
-        } else {
-            return $this->view('User/index', [
-                "user" => $user
-            ]);
-        }
-    }*/
-
     public function index($id) {
         $trips = $this->tripModel->getTrips($id);
         $data = [
@@ -33,8 +22,6 @@ class User extends Controller {
             echo 'Please wait we are deleting the user for you!';
             //header('Location: /eCommerce-Project/User/index');
             echo '<meta http-equiv="Refresh" content=".4; url=/eCommerce-Project/">';
-            
-           
         }
     }
 
@@ -64,8 +51,6 @@ class User extends Controller {
         }
     }
 
-
-
     public function signin() {
         if(!isset($_POST['login'])){
             $this->view('User/signin');
@@ -88,7 +73,7 @@ class User extends Controller {
                     $data = [
                         'msg' => "Password incorrect! for $user->email",
                     ];
-                    $this->view('Login/signin',$data);
+                    $this->view('User/signin',$data);
                 }
             }
             else{
@@ -158,7 +143,24 @@ class User extends Controller {
         if (empty($data['firstName_error']) && empty($data['password_error']) && empty($data['password_len_error']) && empty($data['password_match_error'])) {
             return true;
         } else {
-            $this->view('NewUser/index', $data);
+            $this->view('User/signup', $data);
+        }
+    }
+
+    public function validatePass($data)
+    {
+        
+        if (strlen($data['password']) < 6) {
+            $data['password_len_error'] = 'Password can not be less than 6 characters';
+        }
+        if ($data['verify_password'] != $data['password']) {
+            $data['password_match_error'] = 'Password does not match';
+        }
+
+        if (empty($data['password_len_error']) && empty($data['password_match_error'])) {
+            return true;
+        } else {
+            return false;
         }
     }
 
@@ -176,5 +178,31 @@ class User extends Controller {
         unset($_SESSION['user_first_name']);
         session_destroy();
         echo '<meta http-equiv="Refresh" content="1; url=/eCommerce-Project/">';
+    }
+
+    public function password() {
+       $user = $_SESSION['user_id'];
+     
+       if(!isset($_POST['submit'])){
+        $this->view('User/password');
+    } else {
+        $data = [
+            'password' => $_POST['password'],
+            'verify_password' => $_POST['verify_password'],
+            "user_id" => $user
+        ];
+        if ($this->validatePass($data) != false) {
+            $data2 =[
+                'password_hash' => password_hash($_POST['password'], PASSWORD_DEFAULT),
+                "id" => $user
+            ];
+          
+            if ($this->userModel->updateUser($data2)) {
+                echo 'Please wait creating we are changing the password';
+                echo '<meta http-equiv="Refresh" content="2; url=/eCommerce-Project/">';
+            }
+        }
+    }
+        
     }
 }

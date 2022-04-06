@@ -18,6 +18,19 @@
             return $this->db->getSingle();
         }
 
+        public function updateUser($data){
+            $this->db->query("UPDATE user SET password_hash=:password_hash WHERE id = :id");
+            $this->db->bind(':password_hash', $data['password_hash']);
+            $this->db->bind('id', $data['id']);
+           
+            if($this->db->execute()){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+
         public function createUser($data){
             $this->db->query("INSERT INTO user (first_name, last_name, email, password_hash) values (:first_name, :last_name, :email, :password_hash)");
             $this->db->bind(':first_name', $data['first_name']);
