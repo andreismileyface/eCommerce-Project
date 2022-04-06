@@ -32,6 +32,7 @@
     </table>
 
     <p class="text-center">Password change click <a href="/eCommerce-Project/User/password/">Here</a></p>
+    <p class="text-center">Email change click <a href="/eCommerce-Project/User/email/">Here</a></p>
 
 </div>
 <?php include APPROOT.'/views/includes/footer.php'; ?>
