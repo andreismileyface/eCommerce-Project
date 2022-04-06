@@ -20,10 +20,10 @@
                 echo"<td>$trip->date</td>";
                 echo"<td>$trip->price</td>";
                 echo"<td>
-                <a href='/eCommerce-Project/User/update/$trip->trip_id'> Update</a>
+                <a href='/eCommerce-Project/Trip/edit/$trip->trip_id'> Update</a>
                 </td>";
                 echo"<td>
-                <a href='/eCommerce-Project/User/delete/$trip->trip_id/$trip->user_id'> Delete</a>
+                <a href='/eCommerce-Project/Trip/delete/$trip->trip_id'> Delete</a>
                 </td>";
                 echo"</tr>";
 
