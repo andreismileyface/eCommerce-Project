@@ -2,7 +2,7 @@
 
 <div class="container" style="min-height: 60vh;">
 
-<h2>Personnal Information</h2>
+<h2>Trips Information</h2>
     <table  class="table table-bordered">
         <tr>
             <td>Start</td>
@@ -30,9 +30,31 @@
             }
         ?>
     </table>
+    <br>
+    <br>
+
+    <div class="container" style="min-height: 60vh;">
+  <h2>Personnal Information</h2>
+
+  <form class="px-4 py-3" method="post" action="">
+    <div class="form-group">
+    <label for="firstnameinput">First Name</label>
+        <input name="first_name" type="text"  readonly class="form-control-plaintext" id="first_name" placeholder="Name" require value="<?php echo $data['users']->first_name ?>">
+    </div>
+    <div class="form-group">
+        <label for="lastnameinput">Last Name</label>
+        <input name="last_name" type="text"  readonly class="form-control-plaintext" id="last_name" placeholder="City" require value="<?php echo $data['users']->last_name ?>">
+    </div>
+    <div class="form-group">
+        <label for="emailinput">Email</label>
+        <input name="email" type="text"  readonly class="form-control-plaintext" id="email" placeholder="Phone" require value="<?php echo $data['users']->email ?>">
+    </div> 
+  </form>
+</div>
 
     <p class="text-center">Password change click <a href="/eCommerce-Project/User/password/">Here</a></p>
     <p class="text-center">Email change click <a href="/eCommerce-Project/User/email/">Here</a></p>
+    <p class="text-center">Profile information change click <?php echo "<a href=/eCommerce-Project/User/updateInfo/".$_SESSION['user_id']."> Here</a>"?></p>
 
-</div>
+        </div>
 <?php include APPROOT.'/views/includes/footer.php'; ?>

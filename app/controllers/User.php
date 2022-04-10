@@ -9,12 +9,38 @@ class User extends Controller {
 
     public function index($id) {
         $trips = $this->tripModel->getTrips($id);
+        $iduser = $_SESSION['user_id'];
+        $users = $this->userModel->getUserById($iduser);
         $data = [
-            "trips" => $trips
+            "trips" => $trips,
+            "users" => $users
         ];
-
         $this->view('User/index',$data);
     }
+
+    public function updateInfo($id) {
+        $iduser = $_SESSION['user_id'];
+        $users = $this->userModel->getUserById($id);
+        $data = [
+            "users" => $users
+        ];
+        if(!isset($_POST['submit'])){
+            $this->view('User/updateInfo',$data);
+        }
+        else{
+            $data=[
+                'first_name' => trim($_POST['first_name']),
+                'last_name' => trim($_POST['last_name']),
+                'user_id' => $iduser
+            ];
+            if($this->userModel->updateInfo($data)){
+                echo 'Please wait we are updating the user for you!';
+                //header('Location: /eCommerce-Project/User/index');
+                echo '<meta http-equiv="Refresh" content="4; url=/eCommerce-Project">';
+            }
+        }
+    }
+
 
     public function delete($trip_id, $user_id){
        
@@ -214,7 +240,7 @@ class User extends Controller {
                     "id" => $user
                 ];
             
-                if ($this->userModel->updateUser($data2)) {
+                if ($this->userModel->updatePass($data2)) {
                     echo 'Please wait creating we are changing the password';
                     echo '<meta http-equiv="Refresh" content="2; url=/eCommerce-Project/">';
                 }
