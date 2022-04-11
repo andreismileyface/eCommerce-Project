@@ -5,7 +5,7 @@
             <div class="box">
                 <h2>BOOK A FLIGHT</h2>
                 <h5>Limited amount of countries available</h5>
-                <a href="Flights.html" class="nav-links">
+                <a href="/eCommerce-Project/Flight" class="nav-links">
                     <div class="flight-image" style="height:300px;"></div>
                 </a>
                 <p>Planning on traveling?</p>
@@ -18,7 +18,7 @@
             <div class="box">
                 <h2>BOOK A CRUISE</h2>
                 <h5>Restrictions on cruises due to Covid-19</h5>
-                <a href="Cruises.html" class="nav-links">
+                <a href="/eCommerce-Project/Cruise" class="nav-links">
                     <div class="cruise-image" style="height:300px;" href="Cruises.html"></div>
                 </a>
                 <p>Planning on taking a cruise?</p>
