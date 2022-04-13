@@ -26,7 +26,7 @@
     </div>
 
     <button type="submit" name="signup" class="btn btn-primary mt-2"> Sign up</button>
-    <p class="text-center">Already registered? <a href="Login">Login</a> </p>
+    <p class="text-center">Already registered? <a href="/eCommerce-project/User/signin">Login</a> </p>
 
     <?php
 
