@@ -12,6 +12,7 @@ class User extends Controller {
         $iduser = $_SESSION['user_id'];
         $users = $this->userModel->getUserById($iduser);
         $data = [
+            "user" => $id,
             "trips" => $trips,
             "users" => $users
         ];
