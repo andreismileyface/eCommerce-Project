@@ -5,6 +5,7 @@ class Trip extends Controller {
     {
         $this->tripModel = $this->model('tripModel');
         $this->userModel = $this->model('userModel');
+        $this->reviewModel = $this->model('reviewModel');
     }
 
     public function index() {
@@ -14,15 +15,44 @@ class Trip extends Controller {
 
     public function viewTrip($id) {
         $trip = $this->tripModel->getTrip($id);
-        if (!isset($trip->trip_id)) {
+        if (!isset($trip->trip_id)) { // if the trip doesnt exist
             echo '<meta http-equiv="Refresh" content="0; url=/eCommerce-Project/">';
         } else {
-            $seller = $this->userModel->getUserById($trip->user_id);
+            if (!isset($_POST['submit'])) { // if viewing the trip
+                $seller = $this->userModel->getUserById($trip->user_id);
+                $reviews = $this->reviewModel->getTripReviews($id);
 
-            return $this->view("Trip/view", [
-                "trip" => $trip,
-                "seller" => $seller
-            ]);
+                // check if logged in user has already reviewed
+                $userAlreadyReviewed = false;
+                if (isLoggedIn()) {
+                    $data = [
+                        "trip_id" => $id,
+                        "user_id" => $_SESSION['user_id']
+                    ];
+                    if (isset($this->reviewModel->getReviewByUserIdAndTripId($data)->review_id)) {
+                        $userAlreadyReviewed = true;
+                    }
+                }
+
+                return $this->view("Trip/view", [
+                    "trip" => $trip,
+                    "seller" => $seller,
+                    "reviews" => $reviews,
+                    "alreadyReviewed" => $userAlreadyReviewed
+                ]);
+            } else { // if submitting a review
+                $data = [
+                    'trip_id' => $id,
+                    'user_id' => $_SESSION['user_id'],
+                    'value' => $_POST['review'],
+                    'message' => $_POST['message']
+                ];
+
+                if ($this->reviewModel->reviewTrip($data)) {
+                    echo 'adding review to database...';
+                    echo '<meta http-equiv="Refresh" content="0; url=/eCommerce-Project/Trip/viewTrip/'.$id.'">';
+                }
+            }
         }
     }
 
