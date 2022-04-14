@@ -21,7 +21,7 @@
         public function updatePass($data){
             $this->db->query("UPDATE user SET password_hash=:password_hash WHERE id = :id");
             $this->db->bind(':password_hash', $data['password_hash']);
-            $this->db->bind('id', $data['id']);
+            $this->db->bind(':id', $data['user_id']);
            
             if($this->db->execute()){
                 return true;
@@ -34,7 +34,7 @@
         public function updateEmail($data){
             $this->db->query("UPDATE user SET email=:email WHERE id = :id");
             $this->db->bind(':email', $data['email']);
-            $this->db->bind('id', $data['id']);
+            $this->db->bind(':id', $data['user_id']);
            
             if($this->db->execute()){
                 return true;

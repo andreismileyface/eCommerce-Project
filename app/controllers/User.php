@@ -176,18 +176,16 @@ class User extends Controller {
 
     public function validatePass($data)
     {
-        
         if (strlen($data['password']) < 6) {
             $data['password_len_error'] = 'Password can not be less than 6 characters';
         }
         if ($data['verify_password'] != $data['password']) {
             $data['password_match_error'] = 'Password does not match';
         }
-
         if (empty($data['password_len_error']) && empty($data['password_match_error'])) {
             return true;
         } else {
-            return false;
+            return $this->view('User/password', $data);
         }
     }
 
@@ -204,7 +202,7 @@ class User extends Controller {
         if (empty($data['email_error']) && empty($data['email_match_error'])) {
             return true;
         } else {
-            return false;
+            return $this->view('User/email', $data);
         }
     }
 
@@ -233,15 +231,11 @@ class User extends Controller {
             $data = [
                 'password' => $_POST['password'],
                 'verify_password' => $_POST['verify_password'],
-                "user_id" => $user
+                "user_id" => $user,
+                'password_hash' => password_hash($_POST['password'], PASSWORD_DEFAULT)
             ];
-            if ($this->validatePass($data) != false) {
-                $data2 =[
-                    'password_hash' => password_hash($_POST['password'], PASSWORD_DEFAULT),
-                    "id" => $user
-                ];
-            
-                if ($this->userModel->updatePass($data2)) {
+            if ($this->validatePass($data)) {
+                if ($this->userModel->updatePass($data)) {
                     echo 'Please wait creating we are changing the password';
                     echo '<meta http-equiv="Refresh" content="2; url=/eCommerce-Project/">';
                 }
@@ -258,14 +252,13 @@ class User extends Controller {
             $data = [
                 'email' => $_POST['email'],
                 'verify_email' => $_POST['verify_email'],
-                "user_id" => $user,
-                "id" => $user
+                "user_id" => $user
             ];
-            
-            
-            if ($this->userModel->updateEmail($data)) {
+            if ($this->validateEmail($data)) {
+                if ($this->userModel->updateEmail($data)) {
                 echo 'Please wait creating we are changing the email';
                 echo '<meta http-equiv="Refresh" content="2; url=/eCommerce-Project/">';
+                }
             }
         }
     }  
