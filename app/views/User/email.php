@@ -8,7 +8,7 @@
     </div>
     <div class="form-group">
         <label for="confirm">Confirm New Email</label>
-        <input type="text" class="form-control <?php echo (!empty($data['email_match_error'])) ? 'is-invalid' : ''; ?>"  id="verify_email" name="verify_email" >
+        <input type="text" placeholder="Re-enter Email" class="form-control <?php echo (!empty($data['email_match_error'])) ? 'is-invalid' : ''; ?>"  id="verify_email" name="verify_email" >
         <span class="invalid-feedback"><?php echo $data['email_match_error']; ?> </span>
     </div>
     <div class='mt-2'> 

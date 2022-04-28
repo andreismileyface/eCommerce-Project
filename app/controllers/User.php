@@ -261,5 +261,42 @@ class User extends Controller {
                 }
             }
         }
-    }  
+    }
+    
+    // User delete section
+    public function deleteUser($user_id){
+        $user_id = $_SESSION['user_id'];
+        $data = [
+            'user_id' => $user_id,
+        ];
+        $this->userModel->deleteAllUserTrip($data);
+        $this->deleteUser2($user_id); //Calling the next method
+        //header('Location: /MVC/User/getUsers');
+        echo '<meta http-equiv="Refresh" content="2; url=/eCommerce-Project/">';
+    }
+
+    public function deleteUser2($user_id){
+        $user_id = $_SESSION['user_id'];
+        $data = [
+            'user_id' => $user_id,
+        ];
+        $this->userModel->deleteAllUserReview($data);
+        $this->deleteUser3($user_id);//Calling the next method
+        //header('Location: /MVC/User/getUsers');
+        echo '<meta http-equiv="Refresh" content="2; url=/eCommerce-Project/">';
+    }
+
+    public function deleteUser3($user_id){
+        $user_id = $_SESSION['user_id'];
+        $data = [
+            'id' => $user_id,
+        ];
+        unset($_SESSION['user_id']);
+        session_destroy();
+        $this->userModel->deleteUserAllUserInfo($data);
+        echo 'Please wait we are deleting the user for you!';
+        //header('Location: /MVC/User/getUsers');
+        echo '<meta http-equiv="Refresh" content="2; url=/eCommerce-Project/">';
+    }
+    // Ends here
 }

@@ -72,6 +72,47 @@
             else{
                 return false;
             }
+        }
+
+        public function deleteAllUserTrip($data){
+            $this->db->query("DELETE FROM trip WHERE user_id=:user_id");
+        
+            $this->db->bind('user_id',$data['user_id']);
+            
+            if($this->db->execute()){
+                return true;
+            }
+            else{
+                return false;
+            }
+
+        }
+
+        public function deleteAllUserReview($data){
+            $this->db->query("DELETE FROM review WHERE user_id=:user_id");
+        
+            $this->db->bind('user_id',$data['user_id']);
+            
+            if($this->db->execute()){
+                return true;
+            }
+            else{
+                return false;
+            }
+
+        }
+
+        public function deleteUserAllUserInfo($data){
+            $this->db->query("DELETE FROM user WHERE id=:id");
+        
+            $this->db->bind('id',$data['id']);
+            
+            if($this->db->execute()){
+                return true;
+            }
+            else{
+                return false;
+            }
 
         }
     }
