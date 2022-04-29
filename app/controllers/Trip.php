@@ -62,7 +62,7 @@ class Trip extends Controller {
             
             if (!isLoggedIn() || !isset($trip->trip_id) || $_SESSION['user_id'] != $trip->user_id) {
                 echo 'You do not have permission to edit this';
-                echo '<meta http-equiv="Refresh" content="1; url=/eCommerce-Project/Flight/viewFlight/'.$id.'">';
+                echo '<meta http-equiv="Refresh" content="1; url=/eCommerce-Project/Flight/viewTrip/'.$id.'">';
             } else {
                 return $this->view('Trip/edit', ['flight' => $trip]);
             }
@@ -80,7 +80,7 @@ class Trip extends Controller {
 
             if ($this->tripModel->editTrip($data)) {
                 echo 'saving changes...';
-                echo '<meta http-equiv="Refresh" content="1; url=/eCommerce-Project/Flight/viewFlight/'.$id.'">';
+                echo '<meta http-equiv="Refresh" content="1; url=/eCommerce-Project/Trip/viewFlight/'.$id.'">';
             } else {
 
             }
@@ -91,11 +91,11 @@ class Trip extends Controller {
         $trip = $this->tripModel->getTrip($id);
         if (!isLoggedIn() || !isset($trip->trip_id) || $_SESSION['user_id'] != $trip->user_id) {
             echo 'You do not have permission to delete this';
-            echo '<meta http-equiv="Refresh" content="1; url=/eCommerce-Project/Flight/viewFlight/'.$id.'">';
+            echo '<meta http-equiv="Refresh" content="1; url=/eCommerce-Project/Trip/viewTrip/'.$id.'">';
         } else {
             if ($_SESSION['user_id'] != $trip->user_id) {
                 echo 'You do not have permission to delete this';
-                echo '<meta http-equiv="Refresh" content="1; url=/eCommerce-Project/Flight/viewFlight/'.$id.'">';
+                echo '<meta http-equiv="Refresh" content="1; url=/eCommerce-Project/Trip/viewTrip/'.$id.'">';
             } else {
                 if ($this->tripModel->deleteTrip($id)) {
                     echo 'Flight successfully deleted';

@@ -80,14 +80,6 @@
                         ';
                     }
                 ?>
-
-                <h2>LOCATION</h2>
-                <h5>Google Map representation of an airport nearby.</h5>
-                <p>
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5596.688388680401!2d-73.74456960875895!3d45.462869944127576!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cc93d7753d8c92b%3A0x1e30a8791014678d!2sMontr%C3%A9al-Pierre%20Elliott%20Trudeau%20International%20Airport!5e0!3m2!1sen!2sca!4v1638127431218!5m2!1sen!2sca"
-                        width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-                </p>
             </div>
         </div>
 
@@ -113,46 +105,6 @@
                     particles when they cough, sneeze, speak,
                     sing or breathe. These particles range from larger respiratory droplets to smaller aerosols.
                 </p>
-            </div>
-
-            <div class="box ">
-                <h2>Our Flights Reviews</h2>
-                <div class="review-container">
-                    <p>Terry Arnitage - Customer</p>
-                    <p> Good food, great service and smooth flight. All 4 flights were on time and comfortable. Staff
-                        friendly and gave excellent service. Will gladly fly with them again.</p>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                </div>
-                <div class="review-container" style="margin-top: 10px;">
-                    <p>Mike Hane - Customer</p>
-                    <p>I really enjoyed this flight. The flight attendants offered excellent service. There was a good
-                        selection of wines. The dinner was good but I would have appreciate a third option for the main
-                        course. I particularly enjoyed watching
-                        the films, documentaries and TV shows. When I am flying longer routes I always try to book on a
-                        plane with Signature Service. It's nice to see they've brought that back. I also enjoyed the AC
-                        lounge and have a bite to eat and a
-                        glass of wine and some water before my flight. The seats are really comfortable and with the
-                        seat facing the window, it feels nicely private. I also appreciated the health protocols
-                        followed by the AC staff.</p>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                </div>
-            </div>
-
-            <div class="box ">
-                <div class="blackfriday-container">
-                    <h2>BLACK FRIDAY DEAL</h2>
-                    <div class="friday-image " style="height:100px; "></div>
-                    <p id="countdown" style="font-size: 20px; text-align: center;"></p>
-                    <p>The Black Friday 2021 sale has ended. Mark your calendar for Best Buy Black Friday 2022 on
-                        November 25.</p>
-                </div>
             </div>
         </div>
     </div>

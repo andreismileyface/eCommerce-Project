@@ -80,14 +80,6 @@
                         ';
                     }
                 ?>
-
-                <h2>LOCATION</h2>
-                <h5>Google Map representation of an airport nearby.</h5>
-                <p>
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5596.688388680401!2d-73.74456960875895!3d45.462869944127576!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cc93d7753d8c92b%3A0x1e30a8791014678d!2sMontr%C3%A9al-Pierre%20Elliott%20Trudeau%20International%20Airport!5e0!3m2!1sen!2sca!4v1638127431218!5m2!1sen!2sca"
-                        width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-                </p>
             </div>
         </div>
 

@@ -23,6 +23,8 @@
             <br>
             <b>Capacity: </b> <?php echo $data['trip']->max; ?>
             <div><b>Description:</b> <?php echo $data['trip']->description; ?></div>
+            <iframe width="90%" height="450" style="border:0" loading="lazy" allowfullscreen
+src="https://www.google.com/maps/embed/v1/directions?origin=<?php echo $data['trip']->start ?>&destination=<?php echo $data['trip']->destination ?>&mode=flying&key=AIzaSyAHdxYRbAnAATgFB8nXsrx6rVfKkq0jfoY"></iframe>
         </div>
     </div>
 
