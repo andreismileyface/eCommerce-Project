@@ -115,5 +115,29 @@
             }
 
         }
+
+        public function updateAboutText($data) {
+            $this->db->query("UPDATE about SET text_about=:text_about WHERE user_id=:user_id");
+            $this->db->bind(":text_about", $data['text_about']);
+            $this->db->bind(':user_id', $data['user_id']);
+    
+            return $this->db->execute();
+        }
+
+        public function aboutText($data) {
+            $this->db->query("INSERT INTO about (user_id, text_about) VALUES (:user_id, :text_about)");
+            $this->db->bind(":user_id", $data['user_id']);
+            $this->db->bind(":text_about", $data['text_about']);
+    
+            return $this->db->execute();
+        }
+
+        public function getAboutByUser($id) {
+            $this->db->query("SELECT * FROM about WHERE user_id = :id");
+            $this->db->bind(":id", $id);
+
+            return $this->db->getSingle();
+        }
+
     }
 ?>

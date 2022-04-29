@@ -23,7 +23,13 @@
                             <p class="text-left"><a href="/eCommerce-Project/User/password/"class="btn btn-primary">Password Change</a></p>
                             <p class="text-left"><a href="/eCommerce-Project/User/email/"class="btn btn-primary">Email Change</a></p>
                             <p class="text-left"><?php echo '<a href=/eCommerce-Project/User/updateInfo/'.$_SESSION['user_id'].' class="btn btn-primary">Modify Information</a>'?></p>
-                            <p class="text-left"><?php echo '<a href=/eCommerce-Project/User/deleteUser/'.$_SESSION['user_id'].' class="btn btn-primary">Delete Account</a>'?></p>
+                            <?php
+                                if ($data["user_id"] == null) {?>
+                                    <p class="text-left"><?php echo '<a href=/eCommerce-Project/User/about/'.$_SESSION['user_id'].' class="btn btn-primary">Add About</a>'?></p>
+                            <?php } else { ?>
+                                <p class="text-left"><?php echo '<a href=/eCommerce-Project/User/editabout/'.$_SESSION['user_id'].' class="btn btn-primary">Edit About</a>'?></p>
+                                    <?php } ?>
+                                    <p class="text-left"><?php echo '<a href=/eCommerce-Project/User/deleteUser/'.$_SESSION['user_id'].' class="btn btn-primary">Delete Account</a>'?><p>
                     </ul>
                 </div>
             </div>
@@ -34,8 +40,13 @@
                     <div class="text-start mb-1-6 wow fadeIn">
                         <h2 class="h1 mb-0 text-primary">About Me</h2>
                     </div>
-                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.</p>
-                    <p class="mb-0">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p>
+                    <?php
+                        if ($data["user_id"] == null) {?>
+                            <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.</p>
+                            <p class="mb-0">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p>
+                    <?php } else { ?>
+                        <?php echo '<p class="mb-0">' . $data['user_id']->text_about . "</p>"; ?>
+                        <?php } ?>
                 </div>
 
                 <h2>Trips Information</h2>

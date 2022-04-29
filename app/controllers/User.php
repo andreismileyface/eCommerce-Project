@@ -11,10 +11,12 @@ class User extends Controller {
         $trips = $this->tripModel->getTrips($id);
         $iduser = $_SESSION['user_id'];
         $users = $this->userModel->getUserById($iduser);
+        $about = $this->userModel->getAboutByUser($_SESSION['user_id']);
         $data = [
             "user" => $id,
             "trips" => $trips,
-            "users" => $users
+            "users" => $users,
+            "user_id" => $about
         ];
         $this->view('User/index',$data);
     }
@@ -299,4 +301,43 @@ class User extends Controller {
         echo '<meta http-equiv="Refresh" content="2; url=/eCommerce-Project/">';
     }
     // Ends here
+
+    public function about($id) {
+        $user_id = $_SESSION['user_id'];
+        if(!isset($_POST['submit'])){
+            $this->view('User/about');
+        } else {
+            $data = [
+                'text_about' => $_POST['text_about'],
+                'user_id' => $user_id
+            ];
+            if($this->userModel->aboutText($data)){
+            echo 'Please wait we are redirecting you to profile page!';
+            //header('Location: /MVC/User/getUsers');
+            echo '<meta http-equiv="Refresh" content="2; url=/eCommerce-Project/User/'.$_SESSION['user_id'].'">';
+            }
+        }
+    }
+
+    public function editabout($id) {
+        $user_id = $_SESSION['user_id'];
+        $users = $this->userModel->getAboutByUser($id);
+        $data = [
+            "user_id" => $users
+        ];
+        if(!isset($_POST['submit'])){
+            $this->view('User/editabout',$data);
+        }
+        else{
+            $data=[
+                'text_about' => trim($_POST['text_about']),
+                'user_id' => $user_id
+            ];
+            if($this->userModel->updateAboutText($data)){
+                echo 'Please wait we are updating the content for you!';
+                //header('Location: /eCommerce-Project/User/index');
+                echo '<meta http-equiv="Refresh" content="2; url=/eCommerce-Project/User/'.$_SESSION['user_id'].'">';
+            }
+        }
+    }
 }
