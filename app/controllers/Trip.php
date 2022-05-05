@@ -87,6 +87,24 @@ class Trip extends Controller {
         }
     }
 
+    public function bookTrip($id){
+        if (isset($_POST['submit'])){
+            
+        
+        $data = [
+            'number' => $_POST['number'],
+            'id' => $id
+        ];
+        if ($this->tripModel->addTrip($data)) {
+        echo 'Trip successfully added';
+        $this->tripModel->addToCart($data);
+        //$this->tripModel->sendToCart($data);
+        echo '<meta http-equiv="Refresh" content="1; url=/eCommerce-Project/Cart">';
+        }
+    }
+
+    }
+
     public function delete($id) {
         $trip = $this->tripModel->getTrip($id);
         if (!isLoggedIn() || !isset($trip->trip_id) || $_SESSION['user_id'] != $trip->user_id) {

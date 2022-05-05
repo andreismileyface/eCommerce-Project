@@ -116,6 +116,62 @@
 
         }
 
+        public function deleteAllUserAbout($data){
+            $this->db->query("DELETE FROM about WHERE user_id=:user_id");
+        
+            $this->db->bind('user_id',$data['user_id']);
+            
+            if($this->db->execute()){
+                return true;
+            }
+            else{
+                return false;
+            }
+
+        }
+
+        public function deleteAllUserContactinfo($data){
+            $this->db->query("DELETE FROM contactinfo WHERE user_id=:user_id");
+        
+            $this->db->bind('user_id',$data['user_id']);
+            
+            if($this->db->execute()){
+                return true;
+            }
+            else{
+                return false;
+            }
+
+        }
+
+        public function deleteAllUsercontactReview($data){
+            $this->db->query("DELETE FROM review WHERE user_id=:user_id");
+        
+            $this->db->bind('user_id',$data['user_id']);
+            
+            if($this->db->execute()){
+                return true;
+            }
+            else{
+                return false;
+            }
+
+        }public function deleteAllUsercontactCart($data){
+            $this->db->query("DELETE FROM cart WHERE user_id=:user_id");
+        
+            $this->db->bind('user_id',$data['user_id']);
+            
+            if($this->db->execute()){
+                return true;
+            }
+            else{
+                return false;
+            }
+
+        }
+
+
+
         public function updateAboutText($data) {
             $this->db->query("UPDATE about SET text_about=:text_about WHERE user_id=:user_id");
             $this->db->bind(":text_about", $data['text_about']);

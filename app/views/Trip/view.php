@@ -4,16 +4,28 @@
 
     <div class="leftcolumn box">
         <div class="container" style="min-height: 60vh">
-            <h2>Flight description</h2>
-            <a href="#" class="btn btn-primary">Book</a>
+        <h2>Flight description</h2>
+
+            <form method="post" action="/eCommerce-Project/Trip/bookTrip/<?php echo $data["trip"]->trip_id ?>">
             <?php
             if (isLoggedIn()) {
-                if ($data['seller']->id == $_SESSION['user_id']) {
-                    echo '<a href="/eCommerce-Project/Trip/edit/' . $data['trip']->trip_id . '" class="btn btn-success">Edit</a>';
-                    echo '<a href="/eCommerce-Project/Trip/delete/' . $data['trip']->trip_id . '" class="btn btn-danger">Delete</a>';
-                }
+            if ($data['trip']->max == 0){
+                echo '<a href="/eCommerce-Project/Trip/bookTrip/' .$data['trip']->trip_id.'" class="btn btn-primary disabled">Book</a>';
+            }else{
+                echo '<button name="submit" href="/eCommerce-Project/Trip/bookTrip/' .$data['trip']->trip_id.'" class="btn btn-primary">Book</button>';
             }
+            if ($data['seller']->id == $_SESSION['user_id']) {
+                echo '<a href="/eCommerce-Project/Trip/edit/' . $data['trip']->trip_id . '" class="btn btn-success">Edit</a>';
+                echo '<a href="/eCommerce-Project/Trip/delete/' . $data['trip']->trip_id . '" class="btn btn-danger">Delete</a>';
+            }
+
+            }else{
+            echo '<a href="/eCommerce-Project/User/signin" class="btn btn-primary">Book</a>';
+            }
+
             ?>
+
+
             <br>
             <b>Seller: </b> <a href="/eCommerce-Project/user/<?php echo $data['seller']->id; ?>"><?php echo $data['seller']->first_name; ?></a>
             <br>
@@ -21,8 +33,13 @@
             <br>
             <b>To: </b> <?php echo $data['trip']->destination; ?>
             <br>
+            <b>Price for one: </b> 
+            <?php echo $data['trip']->price ?>$<br>
             <b>Capacity: </b> <?php echo $data['trip']->max; ?>
             <div><b>Description:</b> <?php echo $data['trip']->description; ?></div>
+            <b>Amount of tickets: </b><input type="number" id="myNumber" name="number" value="1" min="1" max="<?php echo $data['trip']->max; ?>"></input>
+            <br><br>
+        </form>
             <iframe width="90%" height="450" style="border:0" loading="lazy" allowfullscreen
 src="https://www.google.com/maps/embed/v1/directions?origin=<?php echo $data['trip']->start ?>&destination=<?php echo $data['trip']->destination ?>&mode=flying&key=AIzaSyAHdxYRbAnAATgFB8nXsrx6rVfKkq0jfoY"></iframe>
         </div>

@@ -101,6 +101,38 @@
             return $this->db->execute();
         }
 
+
+        public function deleteTrip($id) {
+            $this->db->query("DELETE FROM trip WHERE trip_id = :trip_id");
+            $this->db->bind(":trip_id", $id);
+
+            return $this->db->execute();
+        }
+
+        public function addTrip($data) {
+            $this->db->query("UPDATE trip SET max = max-:number WHERE trip_id=:trip_id");
+            $this->db->bind(":number", $data['number']);
+            $this->db->bind(":trip_id", $data['id']);
+          //  $this->addToCart($data);
+            return $this->db->execute();
+        }
+
+        public function addToCart($data){
+            $this->db->query("INSERT INTO cart (trip_id, user_id, number) values (:trip_id, :user_id, :number)");
+            $this->db->bind(":number", $data['number']);
+            $this->db->bind(":trip_id", $data['id']);
+            $this->db->bind(":user_id", $_SESSION['user_id']);
+        
+            $this->db->execute();
+        } 
+
+        public function sentToCart($data){
+            $this->db->query("SELECT description, start, destination, price FROM `finalproject`.`trip` WHERE `trip_id` = :trip_id");
+            $this->db->bind(":trip_id", $data['id']);
+            $this->db->execute();
+        }
+
+/*
         public function deleteTrip($id) {
             $this->db->query("DELETE FROM trip WHERE trip_id = :trip_id");
             $this->db->bind(":trip_id", $id);
@@ -115,7 +147,9 @@
             //$this->db->query("UPDATE trip SET max = 3 WHERE trip_id = 4");
 
             return $this->db->execute();
-        }
+        }*/
+
+
 
     }
     

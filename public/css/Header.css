@@ -4,7 +4,7 @@
   background: white;
   color: white;
   background-image: linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)),
-    url("images/HomeBanner.jpg");
+    url("../img/HomeBanner.jpg");
   background-position: center;
   background-size: cover;
   position: relative;

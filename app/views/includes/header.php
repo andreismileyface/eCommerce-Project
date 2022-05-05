@@ -34,27 +34,24 @@
     </div>
 
     <div class="navigation-top">
-        <a href="/eCommerce-Project/Home" style="float:left; font-weight: bold;">Travel Tsunami</a>
+        <a href="/eCommerce-Project/Home" class="nav-links" style="float:left; font-weight: bold;">Travel Tsunami</a>
         <a href="/eCommerce-Project/Contact" class="nav-links" style="float:left">Contact</a>
         <a href="/eCommerce-Project/Cruise" class="nav-links" style="float:left">Cruises</a>
         <a href="/eCommerce-Project/Flight" class="nav-links" style="float:left">Flights</a>
 
-        <?php 
+        <?php
             if (isLoggedIn()) {
-              echo '<a class="nav-link" style="float:left" href="/eCommerce-Project/Trip/create"> Publish </a>';
+              echo '<a class="nav-links" style="float:left" href="/eCommerce-Project/Trip/create"> Publish </a>';
+              echo '<a class="nav-links" href="/eCommerce-Project/User/logout"><i class="fa-solid fa-sign-out"></i> Logout</a>';
+              echo '<a class="nav-links" href="/eCommerce-Project/User/'.$_SESSION['user_id'].'">Profile</a>';
+              echo '<a class="fa fa-shopping-cart nav-links" style="font-size:22px;color:white" href="/eCommerce-Project/Cart/'.$_SESSION['user_id'].'"></a>';
+              echo '<meta http-equiv="refresh" content="9000000, url=/eCommerce-Project/User/logout">';
+            } 
+            else {
+              echo '<a href="/eCommerce-Project/User/signup" class="nav-links" style="float:right; font-weight: bold;"> Sign Up</a>
+                    <a href="/eCommerce-Project/User/signin" class="nav-links" style="float:right; font-weight: bold;"> Login</a>';
             }
           ?>
-
-        <?php
-    if (isLoggedIn()) {
-      echo '<a class="nav-link" href="/eCommerce-Project/User/logout"><i class="fa-solid fa-sign-out"></i> Logout</a>';
-      echo '<a class="nav-link" href="/eCommerce-Project/User/'.$_SESSION['user_id'].'">Profile</a>';
-    } 
-    else {
-      echo '<a href="/eCommerce-Project/User/signup" style="float:right; font-weight: bold;"> Sign Up</a>
-            <a href="/eCommerce-Project/User/signin" style="float:right; font-weight: bold;"> Login</a>';
-    }
-    ?>
 
     
 

@@ -269,7 +269,7 @@ class User extends Controller {
     public function deleteUser($user_id){
         $user_id = $_SESSION['user_id'];
         $data = [
-            'user_id' => $user_id,
+            'user_id' => $user_id
         ];
         $this->userModel->deleteAllUserTrip($data);
         $this->deleteUser2($user_id); //Calling the next method
@@ -280,7 +280,7 @@ class User extends Controller {
     public function deleteUser2($user_id){
         $user_id = $_SESSION['user_id'];
         $data = [
-            'user_id' => $user_id,
+            'user_id' => $user_id
         ];
         $this->userModel->deleteAllUserReview($data);
         $this->deleteUser3($user_id);//Calling the next method
@@ -291,7 +291,56 @@ class User extends Controller {
     public function deleteUser3($user_id){
         $user_id = $_SESSION['user_id'];
         $data = [
-            'id' => $user_id,
+            'user_id' => $user_id
+        ];
+       
+        $this->userModel->deleteAllUserAbout($data);
+        $this->deleteUser4($user_id);
+    
+        //header('Location: /MVC/User/getUsers');
+        echo '<meta http-equiv="Refresh" content="2; url=/eCommerce-Project/">';
+    }
+
+    public function deleteUser4($user_id){
+        $user_id = $_SESSION['user_id'];
+        $data = [
+            'user_id' => $user_id
+        ];
+       
+        $this->userModel->deleteAllUserContactinfo($data);
+        $this->deleteUser5($user_id);
+        //header('Location: /MVC/User/getUsers');
+        echo '<meta http-equiv="Refresh" content="2; url=/eCommerce-Project/">';
+    }
+
+    public function deleteUser5($user_id){
+        $user_id = $_SESSION['user_id'];
+        $data = [
+            'user_id' => $user_id
+        ];
+
+        $this->userModel->deleteAllUsercontactReview($data);
+        $this->deleteUser6($user_id);
+        //header('Location: /MVC/User/getUsers');
+        echo '<meta http-equiv="Refresh" content="2; url=/eCommerce-Project/">';
+    }
+
+    public function deleteUser6($user_id){
+        $user_id = $_SESSION['user_id'];
+        $data = [
+            'user_id' => $user_id
+        ];
+        
+        $this->userModel->deleteAllUsercontactCart($data);
+        $this->deleteUser7($user_id);
+        //header('Location: /MVC/User/getUsers');
+        echo '<meta http-equiv="Refresh" content="2; url=/eCommerce-Project/">';
+    }
+
+    public function deleteUser7($user_id){
+        $user_id = $_SESSION['user_id'];
+        $data = [
+            'id' => $user_id
         ];
         unset($_SESSION['user_id']);
         session_destroy();
